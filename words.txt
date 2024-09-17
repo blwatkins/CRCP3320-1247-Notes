@@ -7,6 +7,5 @@ balloon
 blue
 turtle
 pink
-yellow
-rooster
+
 
