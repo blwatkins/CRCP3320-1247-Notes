@@ -4,6 +4,8 @@ parrot
 car
 quail
 forrest
+red
+sink
 blue
 turtle
 pink
