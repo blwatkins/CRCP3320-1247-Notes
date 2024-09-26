@@ -1,0 +1,7 @@
+# GitHub Pages configuration file
+title: CRCP 3320 Notes - Fall 2024
+description: Notes for CRCP 3320 in the Fall 2024 term.
+
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+- jekyll-remote-theme
