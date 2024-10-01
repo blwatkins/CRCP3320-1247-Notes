@@ -3,3 +3,5 @@
 [YouTube](https://www.youtube.com/)
 
 [Home Page](./index.md)
+
+[Links](./stuff/links.md)
