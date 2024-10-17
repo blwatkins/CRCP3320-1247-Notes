@@ -1,0 +1,12 @@
+.center {
+    text-align: center;
+}
+
+.blue-border {
+    border-style: dashed;
+    border-color: mediumblue;
+}
+
+p.blue-border {
+    border-width: 3px;
+}
