@@ -2,7 +2,7 @@
 
 let f;
 let flowers = [];
-let flowerCount = 50;
+let flowerCount = 100;
 
 function setup() {
     createCanvas(500, 500);

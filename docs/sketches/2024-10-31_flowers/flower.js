@@ -27,8 +27,8 @@ class Flower {
         noStroke();
 
         for (let i = 0; i < this.#petalCount; i++) {
-            let x = cos(theta) * (this.#size / 2.0);
-            let y = sin(theta) * (this.#size / 2.0);
+            let x = cos(theta) * (this.#size / 1.5);
+            let y = sin(theta) * (this.#size / 1.5);
             ellipse(x, y, this.#size, this.#size);
             theta += TWO_PI / this.#petalCount;
         }
