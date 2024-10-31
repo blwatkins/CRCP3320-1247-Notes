@@ -11,3 +11,7 @@ This is a page for a GitHub Pages site.
 <a href="./2024-10-10/index.html">Link to October 10 HTML</a>
 
 [Pictures](./2024-10-15/index.md)
+
+# Sketches
+
+[Flowers](./sketches/2024-10-31_flowers/index.html)
