@@ -1,5 +1,6 @@
 import P5Lib from 'p5';
 import { Drawable } from "./drawable";
+import { getMaxX, getMaxY, getMinX, getMinY, getRandomPosition } from './canvas';
 
 export abstract class Shape implements Drawable {
     protected readonly P5: P5Lib;
@@ -9,9 +10,9 @@ export abstract class Shape implements Drawable {
 
     protected constructor(p5: P5Lib) {
         this.P5 = p5;
-        this.POS = p5.createVector(p5.random(p5.width), p5.random(p5.height));
+        this.POS = getRandomPosition(p5);
         this.SPEED = p5.createVector(p5.random(-4, 4), p5.random(-4, 4));
-        this.SIZE = p5.random(10, 100);
+        this.SIZE = p5.random(5, 250);
     }
     
     public abstract draw(): void;
@@ -21,16 +22,16 @@ export abstract class Shape implements Drawable {
     public move(): void {
         this.POS.add(this.SPEED);
 
-        if (this.POS.x > this.P5.width + this.SIZE) {
-            this.POS.x = -this.SIZE;
-        } else if (this.POS.x < -this.SIZE) {
-            this.POS.x = this.P5.width + this.SIZE
+        if (this.POS.x > getMaxX(this.P5) + this.SIZE) {
+            this.POS.x = getMinX(this.P5) - this.SIZE;
+        } else if (this.POS.x < getMinX(this.P5) - this.SIZE) {
+            this.POS.x = getMaxX(this.P5) + this.SIZE
         }
 
-        if (this.POS.y > this.P5.height + this.SIZE) {
-            this.POS.y = -this.SIZE;
-        } else if (this.POS.y < -this.SIZE) {
-            this.POS.y = this.P5.height + this.SIZE
+        if (this.POS.y > getMaxY(this.P5) + this.SIZE) {
+            this.POS.y = getMinY(this.P5) - this.SIZE;
+        } else if (this.POS.y < getMinY(this.P5) - this.SIZE) {
+            this.POS.y = getMaxY(this.P5) + this.SIZE
         }
     }
 }

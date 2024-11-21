@@ -1,6 +1,7 @@
 import P5Lib from 'p5';
 import { Drawable } from './drawable';
 import { getColor } from './color';
+import { getRandomPosition } from './canvas';
 
 export class Spiral implements Drawable {
     readonly #P5: P5Lib;
@@ -39,8 +40,7 @@ export class Spiral implements Drawable {
         this.#POINT_TOTAL = pointTotal ?? Math.floor(p5.random(100, 300));
         this.#POINT_SIZE = pointSize ?? p5.random(2, 10);
         this.#C = c ?? p5.random(4, 20);
-        const vector: P5Lib.Vector = p5.createVector(p5.random(p5.width), p5.random(p5.height));
-        this.#POS.set(pos ?? vector);
+        this.#POS.set(pos ?? getRandomPosition(p5));
         this.#colA = getColor(p5);
         this.#colB = getColor(p5);
         this.#SPIRAL_ANGLE = p5.constrain(spiralAngle ?? p5.random(135, 139), 135, 139);
@@ -49,6 +49,9 @@ export class Spiral implements Drawable {
     }
 
     #buildPoints(): void {
+        this.#POSITIONS.splice(0, this.#POSITIONS.length);
+        this.#COLORS.splice(0, this.#COLORS.length);
+
         for (let i: number = 0; i < this.#POINT_TOTAL; i++) {
             const a: number = i * this.#SPIRAL_ANGLE;
             const theta: number = this.#P5.radians(a);
@@ -78,7 +81,7 @@ export class Spiral implements Drawable {
         this.#theta += this.#DELTA_THETA;
     }
 
-    public setColor(color: P5Lib.Color | P5Lib.Color[]) {
+    public setColor(color: P5Lib.Color | P5Lib.Color[]): void {
         if (color instanceof P5Lib.Color) {
             this.#colA = color;
             this.#colB = color;
@@ -91,5 +94,7 @@ export class Spiral implements Drawable {
                 this.#colB = color[0];
             }
         }
+
+        this.#buildPoints();
     }
 }
