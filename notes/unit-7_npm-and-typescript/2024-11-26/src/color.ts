@@ -54,15 +54,15 @@ export function getColorFromRange(p5: P5Lib, builder: RGBBuilder | HSLBuilder): 
     let color: P5Lib.Color = p5.color(0);
     
     if (isRGBBuilder(builder)) {
-        const r: number = p5.random(builder.red.min, builder.red.max);
-        const g: number = p5.random(builder.green.min, builder.green.max);
-        const b: number = p5.random(builder.blue.min, builder.blue.max);
+        const r: number = Math.floor(p5.random(builder.red.min, builder.red.max));
+        const g: number = Math.floor(p5.random(builder.green.min, builder.green.max));
+        const b: number = Math.floor(p5.random(builder.blue.min, builder.blue.max));
         color = p5.color(r, g, b);
     } else if (isHSLBuilder(builder)) {
-        const h: number = p5.random(builder.hue.min, builder.hue.max);
-        const s: number = p5.random(builder.sat.min, builder.sat.max);
-        const l: number = p5.random(builder.light.min, builder.light.max);
-        color = p5.color(`hsl(${h} ${s} ${l})`);
+        const h: number = Math.floor(p5.random(builder.hue.min, builder.hue.max));
+        const s: number = Math.floor(p5.random(builder.sat.min, builder.sat.max));
+        const l: number = Math.floor(p5.random(builder.light.min, builder.light.max));
+        color = p5.color(`hsl(${h.toString()}, ${s.toString()}%, ${l.toString()}%)`);
     }
 
     return color;

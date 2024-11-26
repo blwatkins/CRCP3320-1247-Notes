@@ -80,8 +80,8 @@ function sketch(p5: P5Lib): void {
     }
 
     function getHSLBuilder(): HSLBuilder {
-        const hRange: Range = {min: 0, max: 360};
-        const sRange: Range = {min: 50, max: 100};
+        const hRange: Range = {min: 90, max: 270};
+        const sRange: Range = {min: 80, max: 100};
         const lRange: Range = {min: 50, max: 100};
         return {
             hue: hRange,
