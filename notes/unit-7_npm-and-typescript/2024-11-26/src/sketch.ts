@@ -5,12 +5,15 @@ import { getColor, getColorFromRange, HSLBuilder, Range, RGBBuilder } from './co
 import { Drawable } from './drawable';
 import { Spiral } from './spiral';
 
+import '../assets/style/sketch.css';
+
 function sketch(p5: P5Lib): void {
     const drawings: Drawable[] = [];
     const drawingsTotal: number = 100;
 
     p5.setup = (): void => {
-        p5.createCanvas(p5.windowWidth - 25, p5.windowHeight - 25, p5.WEBGL);
+        const size: number = Math.min(p5.windowWidth, p5.windowHeight);
+        p5.createCanvas(size, size, p5.WEBGL);
 
         for (let i: number = 0; i < drawingsTotal; i++) {
             const r: number = p5.random(0, 2);
