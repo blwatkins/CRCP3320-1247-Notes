@@ -1,7 +1,7 @@
 import P5Lib from 'p5';
 
 import { Circle } from './circle';
-import { getColor, getColorFromRange, Range } from './color';
+import { getColor, getColorFromRange, HSLBuilder, Range, RGBBuilder } from './color';
 import { Drawable } from './drawable';
 import { Spiral } from './spiral';
 
@@ -51,34 +51,40 @@ function sketch(p5: P5Lib): void {
                 drawing.setColor([c1, c2]);
             });
         } else if (p5.key === 'f') {
-            const rRange: Range = {min: 100, max: 255};
-            const gRange: Range = {min: 0, max: 100};
-            const bRange: Range = {min: 100, max: 255};
+            const builder: RGBBuilder = getRGBBuilder();
             drawings.forEach((drawing: Drawable) => {
-                const c: P5Lib.Color = getColorFromRange(
-                    p5,
-                    rRange,
-                    gRange,
-                    bRange);
+                const c: P5Lib.Color = getColorFromRange(p5, builder);
                 drawing.setColor(c);
             });
         } else if (p5.key === 'g') {
-            const rRange: Range = {min: 100, max: 255};
-            const gRange: Range = {min: 0, max: 100};
-            const bRange: Range = {min: 100, max: 255};
+            const builder: HSLBuilder = getHSLBuilder();
             drawings.forEach((drawing: Drawable) => {
-                const c1: P5Lib.Color = getColorFromRange(
-                    p5,
-                    rRange,
-                    gRange,
-                    bRange);
-                const c2: P5Lib.Color = getColorFromRange(
-                        p5,
-                        {min: 0, max: 100},
-                        {min: 100, max: 255},
-                        {min: 100, max: 255});
+                const c1: P5Lib.Color = getColorFromRange(p5, builder);
+                const c2: P5Lib.Color = getColorFromRange(p5, builder);
                 drawing.setColor([c1, c2]);
             });
+        }
+    }
+
+    function getRGBBuilder(): RGBBuilder {
+        const range: Range = {min: 0, max: 255};
+        return {
+            red: range,
+            green: range,
+            blue: range,
+            type: 'RGB_BUILDER'
+        }
+    }
+
+    function getHSLBuilder(): HSLBuilder {
+        const hRange: Range = {min: 0, max: 360};
+        const sRange: Range = {min: 50, max: 100};
+        const lRange: Range = {min: 50, max: 100};
+        return {
+            hue: hRange,
+            sat: sRange,
+            light: lRange,
+            type: 'HSL_BUILDER'
         }
     }
 }
